@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class phoneBill {
+	
+	public static void main(String args[])
+	{
+		Scanner scanner = new Scanner(System.in);
+		
+		//Get input for base cost
+		System.out.println("Enter base cost:");
+		double baseCost = scanner.nextDouble();
+		
+		//Get input for amount of overage minutes
+		System.out.println("Enter amount of overage minutes: ");
+		double overMinutes = scanner.nextDouble();
+		
+		scanner.close(); //put after scanner last used
+		
+		//create vars and call both calculating methods
+		double overageCharge = overageCalc(overMinutes);
+		double tax = taxCalc(baseCost + overageCharge); //adds base and cost of mins
+		
+		//Print bill using all three vars and adding them
+		printBill(baseCost, overageCharge, tax);
+	}
+	
+	public static double overageCalc(double extraMinutes) //passing in overMinutes
+	{
+		double fee = 0.25;
+		double overage = fee * extraMinutes;
+		return overage;
+		
+	}
+	
+	public static double taxCalc(double subtotal) //Passing in baseCost + overageMinutes
+	{
+		double fee = .15;
+		double tax = subtotal * fee;
+		return tax;
+		
+	}
+	
+	public static void printBill(double base, double overage, double tax )
+	{
+		double finalTotal = base + overage + tax;
+		
+		System.out.println("Your Phone Bill Statement: ");
+		System.out.println("Overage Minutes Charge: $" + overage);
+		System.out.println("Tax Charge: $" + tax);
+		System.out.println("SubTotal Charge: $" + finalTotal);
+	}
+	
+}
